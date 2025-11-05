@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PoE2 Regex Pro</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <h1>PoE2 Regex Pro</h1>
+      <div class="templates">
+        <button data-template="la">Lightning Arrow Deadeye</button>
+        <button data-template="ice">Ice Shot Deadeye</button>
+        <button data-template="phys">Physical Bow</button>
+        <button data-template="arch">Archmage</button>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="controls">
+        <div class="row">
+          <label>Equipment</label>
+          <select id="slot">
+            <option value="bow">Bow</option>
+            <option value="quiver">Quiver</option>
+            <option value="rings">Rings</option>
+            <option value="amulet">Amulet</option>
+            <option value="gloves">Gloves</option>
+            <option value="boots">Boots</option>
+            <option value="body">Body Armor</option>
+            <option value="helmet">Helmet</option>
+          </select>
+        </div>
+
+        <fieldset>
+          <legend>Rarity</legend>
+          <label><input type="checkbox" id="rare" checked /> Rare</label>
+          <label><input type="checkbox" id="magic" /> Magic</label>
+          <label><input type="checkbox" id="normal" /> Normal</label>
+          <label><input type="checkbox" id="quality" /> Quality</label>
+          <label><input type="checkbox" id="sockets" /> Sockets</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Levels</legend>
+          <div class="row">
+            <label>Item Level</label>
+            <input type="range" id="ilMin" min="1" max="99" value="83" />
+            <input type="range" id="ilMax" min="1" max="99" value="99" />
+            <span id="ilOut"></span>
+          </div>
+          <div class="row">
+            <label>Character Level</label>
+            <input type="range" id="clMin" min="1" max="99" value="1" />
+            <input type="range" id="clMax" min="1" max="99" value="99" />
+            <span id="clOut"></span>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Resistances</legend>
+          <label><input type="checkbox" id="resFire" /> Fire</label>
+          <label><input type="checkbox" id="resCold" /> Cold</label>
+          <label><input type="checkbox" id="resLight" /> Lightning</label>
+          <label><input type="checkbox" id="resChaos" /> Chaos</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Movement</legend>
+          <label><input type="checkbox" id="m10" /> 10%</label>
+          <label><input type="checkbox" id="m15" /> 15%</label>
+          <label><input type="checkbox" id="m20" /> 20%</label>
+          <label><input type="checkbox" id="m25" /> 25%</label>
+          <label><input type="checkbox" id="m30" /> 30%</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Damage</legend>
+          <label><input type="checkbox" id="dPhys" /> Physical</label>
+          <label><input type="checkbox" id="dElem" /> Elemental (any)</label>
+          <label><input type="checkbox" id="dCold" /> Cold</label>
+          <label><input type="checkbox" id="dFire" /> Fire</label>
+          <label><input type="checkbox" id="dLight" /> Lightning</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Utility</legend>
+          <label><input type="checkbox" id="uAS" /> Attack Speed</label>
+          <label><input type="checkbox" id="uCS" /> Cast Speed</label>
+          <label><input type="checkbox" id="uLife" /> Life</label>
+          <label><input type="checkbox" id="uMana" /> Mana</label>
+          <label><input type="checkbox" id="uSpirit" /> Spirit</label>
+          <label><input type="checkbox" id="uRarity" /> Increased Rarity</label>
+          <label><input type="checkbox" id="uSkills" /> +Skill Levels</label>
+        </fieldset>
+
+        <div class="row">
+          <label>Compose</label>
+          <label><input type="radio" name="compose" value="and" checked /> AND</label>
+          <label><input type="radio" name="compose" value="or" /> OR</label>
+        </div>
+
+        <div class="row">
+          <label>Custom</label>
+          <input id="custom" placeholder="Add custom pattern" />
+        </div>
+
+        <div class="row">
+          <button id="reset">Reset</button>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <h3>Quick Reference</h3>
+        <ul id="quick">
+          <li data-p="y: r">y: r</li>
+          <li data-p="d rar">d rar</li>
+          <li data-p="resi">resi</li>
+          <li data-p="\\d.+life">\d.+life</li>
+          <li data-p="ph.*da">ph.*da</li>
+          <li data-p="\\d co.+da">\d co.+da</li>
+          <li data-p="ck spe">ck spe</li>
+          <li data-p="ilvl8[3-9]">ilvl8[3-9]</li>
+        </ul>
+      </aside>
+
+      <section class="output">
+        <div class="row space">
+          <textarea id="out" rows="8" placeholder="Generated regex will appear here..."></textarea>
+        </div>
+        <div class="row">
+          <button id="copy">Copy</button>
+          <span id="chars">0/50</span>
+          <span id="warn" class="warn"></span>
+        </div>
+        <div id="preview" class="preview"></div>
+      </section>
+    </main>
+  </div>
+
+<script src="app.js"></script>
+</body>
+</html>
